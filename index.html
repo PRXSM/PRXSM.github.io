@@ -1,0 +1,2346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asama Azim — Cybersecurity & IT</title>
+<meta name="description" content="IT and cybersecurity professional building Recon AI — an AI-powered network security platform. CompTIA Network+ certified, Security+ in progress.">
+<link rel="manifest" href="#" id="manifest-placeholder">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #080b10;
+  --bg2: #0d1117;
+  --bg3: #111820;
+  --surface: #141c26;
+  --surface2: #1a2535;
+  --cyan: #00f5ff;
+  --cyan-dim: rgba(0,245,255,0.12);
+  --cyan-border: rgba(0,245,255,0.2);
+  --white: #f0f6fc;
+  --gray: #8b949e;
+  --gray-dim: #30363d;
+  --green: #3fb950;
+  --amber: #d29922;
+  --red: #f85149;
+  --mono: 'Space Mono', monospace;
+  --sans: 'DM Sans', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: var(--sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── BACKGROUND GRID ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,245,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,245,255,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── NOISE OVERLAY ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px;
+  background: rgba(8,11,16,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--gray-dim);
+}
+
+.nav-logo {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--white);
+  letter-spacing: 0.05em;
+}
+
+.nav-logo span { color: var(--cyan); }
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--cyan); }
+
+/* ── SECTIONS ── */
+section { position: relative; z-index: 1; }
+
+.section-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.section-tag::after {
+  content: '';
+  flex: 1;
+  max-width: 80px;
+  height: 1px;
+  background: var(--cyan-border);
+}
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 40px 80px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.hero-inner {
+  max-width: 720px;
+}
+
+.hero-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,245,255,0.06);
+  border: 1px solid var(--cyan-border);
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 32px;
+}
+
+.hero-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--cyan);
+  animation: pulse 2s infinite;
+}
+
+h1 {
+  font-family: var(--mono);
+  font-size: clamp(42px, 7vw, 80px);
+  line-height: 1.0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+h1 .accent { color: var(--cyan); }
+
+.hero-subtitle {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--gray);
+  line-height: 1.8;
+  margin-bottom: 40px;
+  letter-spacing: 0.03em;
+}
+
+.hero-subtitle span {
+  color: var(--cyan);
+  font-weight: 700;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--cyan);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border-radius: 4px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0,245,255,0.3);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border-radius: 4px;
+  text-decoration: none;
+  border: 1px solid var(--gray-dim);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-ghost:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+/* ── ABOUT ── */
+#about {
+  padding: 100px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.about-bio {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--gray);
+  font-weight: 300;
+}
+
+.about-bio strong {
+  color: var(--white);
+  font-weight: 500;
+}
+
+.about-bio .cyan { color: var(--cyan); }
+
+.about-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface);
+  border: 1px solid var(--gray-dim);
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--gray);
+  letter-spacing: 0.05em;
+}
+
+.chip .dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--cyan);
+}
+
+.about-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stat-item {
+  background: var(--surface);
+  border: 1px solid var(--gray-dim);
+  border-radius: 10px;
+  padding: 24px;
+  transition: border-color 0.2s;
+}
+
+.stat-item:hover { border-color: var(--cyan-border); }
+
+.stat-num {
+  font-family: var(--mono);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--cyan);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--gray);
+}
+
+/* ── CERTS ── */
+#certs {
+  padding: 100px 40px;
+  background: var(--bg2);
+  border-top: 1px solid var(--gray-dim);
+  border-bottom: 1px solid var(--gray-dim);
+}
+
+#certs .inner { max-width: 1100px; margin: 0 auto; }
+
+.section-title {
+  font-family: var(--mono);
+  font-size: clamp(24px, 4vw, 40px);
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 40px;
+}
+
+.section-title .accent { color: var(--cyan); }
+
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.cert-card {
+  background: var(--surface);
+  border: 1px solid var(--gray-dim);
+  border-radius: 12px;
+  padding: 28px;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.cert-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--cyan);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.cert-card:hover { border-color: var(--cyan-border); transform: translateY(-2px); }
+.cert-card:hover::before { opacity: 1; }
+
+.cert-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.cert-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--cyan-dim);
+  border: 1px solid var(--cyan-border);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.cert-status {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cert-status.verified { color: var(--green); }
+.cert-status.pending { color: var(--amber); }
+
+.cert-status::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.cert-name {
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.cert-meta {
+  font-size: 12px;
+  color: var(--gray);
+}
+
+.cert-progress {
+  margin-top: 14px;
+  height: 3px;
+  background: var(--gray-dim);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.cert-progress-fill {
+  height: 100%;
+  width: 65%;
+  background: linear-gradient(90deg, var(--amber), var(--cyan));
+  border-radius: 2px;
+  animation: progressFill 1.5s ease both;
+}
+
+@keyframes progressFill {
+  from { width: 0; }
+  to { width: 65%; }
+}
+
+/* ── FEATURED PROJECT ── */
+#project {
+  padding: 100px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.featured-card {
+  background: var(--surface);
+  border: 1px solid var(--cyan-border);
+  border-radius: 16px;
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.featured-card::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0,245,255,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.featured-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.featured-phase {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+
+.featured-name {
+  font-family: var(--mono);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+  line-height: 1;
+}
+
+.featured-sub {
+  font-size: 13px;
+  color: var(--gray);
+  font-family: var(--mono);
+  letter-spacing: 0.05em;
+  margin-bottom: 24px;
+}
+
+.featured-desc {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--gray);
+  max-width: 680px;
+  margin-bottom: 36px;
+}
+
+.featured-desc strong { color: var(--white); }
+
+.featured-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.feat-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--gray);
+  font-family: var(--mono);
+}
+
+.feat-item::before {
+  content: '▸';
+  color: var(--cyan);
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.featured-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.featured-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid var(--gray-dim);
+}
+
+.tag {
+  background: var(--bg);
+  border: 1px solid var(--gray-dim);
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--gray);
+  letter-spacing: 0.06em;
+}
+
+/* ── HOME LAB ── */
+#lab {
+  padding: 100px 40px;
+  background: var(--bg2);
+  border-top: 1px solid var(--gray-dim);
+  border-bottom: 1px solid var(--gray-dim);
+}
+
+#lab .inner { max-width: 1100px; margin: 0 auto; }
+
+.lab-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.lab-card {
+  background: var(--surface);
+  border: 1px solid var(--gray-dim);
+  border-radius: 12px;
+  padding: 28px;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: block;
+  position: relative;
+}
+
+.lab-card:hover {
+  border-color: var(--cyan-border);
+  transform: translateY(-2px);
+}
+
+.lab-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.lab-active {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+.lab-active::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 6px var(--green);
+}
+
+.lab-link {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray);
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.lab-card:hover .lab-link { color: var(--cyan); }
+
+.lab-name {
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.lab-desc {
+  font-size: 13px;
+  color: var(--gray);
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.lab-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.lab-tag {
+  background: var(--bg);
+  border: 1px solid var(--gray-dim);
+  border-radius: 4px;
+  padding: 3px 10px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--gray);
+}
+
+/* ── SKILLS ── */
+#skills {
+  padding: 100px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.skills-group-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 16px;
+}
+
+.skills-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-chip {
+  background: var(--surface);
+  border: 1px solid var(--gray-dim);
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--gray);
+  transition: all 0.15s;
+  cursor: default;
+}
+
+.skill-chip:hover {
+  border-color: var(--cyan-border);
+  color: var(--cyan);
+  background: var(--cyan-dim);
+}
+
+/* ── CONTACT ── */
+#contact {
+  padding: 100px 40px;
+  background: var(--bg2);
+  border-top: 1px solid var(--gray-dim);
+}
+
+#contact .inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-desc {
+  font-size: 16px;
+  color: var(--gray);
+  margin-bottom: 48px;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.03em;
+}
+
+.contact-cards {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.contact-card {
+  background: var(--surface);
+  border: 1px solid var(--gray-dim);
+  border-radius: 12px;
+  padding: 32px 40px;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-width: 180px;
+}
+
+.contact-card:hover {
+  border-color: var(--cyan-border);
+  box-shadow: 0 0 24px rgba(0,245,255,0.08);
+  transform: translateY(-2px);
+}
+
+.contact-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--cyan-dim);
+  border: 1px solid var(--cyan-border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.contact-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--gray);
+  letter-spacing: 0.05em;
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 32px 40px;
+  border-top: 1px solid var(--gray-dim);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-left {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--gray);
+}
+
+.footer-left span { color: var(--cyan); }
+
+.footer-right {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--gray-dim);
+  letter-spacing: 0.05em;
+}
+
+/* ── MODAL ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  overflow-y: auto;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(8,11,16,0.92);
+  backdrop-filter: blur(8px);
+}
+
+.modal-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 760px;
+  background: var(--bg2);
+  border: 1px solid var(--cyan-border);
+  border-radius: 16px;
+  overflow: hidden;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.open .modal-content {
+  transform: translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--gray-dim);
+  background: var(--surface);
+}
+
+.modal-title {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+
+.modal-close {
+  width: 32px;
+  height: 32px;
+  background: var(--bg);
+  border: 1px solid var(--gray-dim);
+  border-radius: 6px;
+  color: var(--gray);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  font-family: var(--mono);
+}
+
+.modal-close:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+/* ── DEMO CONTENT (embedded) ── */
+.demo-body {
+  padding: 40px 40px 48px;
+  font-family: var(--sans);
+}
+
+.demo-badge {
+  display: inline-block;
+  background: rgba(59,130,246,0.15);
+  border: 1px solid rgba(59,130,246,0.3);
+  color: #60a5fa;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+  font-family: var(--mono);
+}
+
+.demo-logo {
+  font-family: var(--mono);
+  font-size: clamp(32px, 6vw, 52px);
+  line-height: 1;
+  color: var(--white);
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.demo-logo span { color: var(--cyan); }
+
+.demo-tagline {
+  font-size: 15px;
+  color: var(--gray);
+  font-weight: 300;
+  line-height: 1.6;
+  margin-bottom: 36px;
+}
+
+/* Score card */
+.demo-score {
+  background: rgba(13,17,23,0.8);
+  border: 1px solid rgba(0,245,255,0.15);
+  border-radius: 16px;
+  padding: 32px;
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.demo-score::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(0,245,255,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.demo-score-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 14px;
+}
+
+.demo-score-num {
+  font-family: var(--mono);
+  font-size: 72px;
+  line-height: 1;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #10b981, var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+.demo-score-status {
+  font-size: 13px;
+  font-weight: 500;
+  color: #10b981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.demo-score-status::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  background: #10b981;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulse 2s infinite;
+}
+
+.demo-score-desc {
+  font-size: 12px;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+/* Demo features */
+.demo-section-title {
+  font-family: var(--mono);
+  font-size: 18px;
+  color: var(--white);
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.demo-features { display: grid; gap: 10px; margin-bottom: 32px; }
+
+.demo-feature {
+  background: rgba(13,17,23,0.8);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 10px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  transition: border-color 0.2s;
+}
+
+.demo-feature:hover { border-color: var(--cyan-border); }
+
+.demo-feat-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+
+.demo-feat-strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 3px;
+}
+
+.demo-feat-span { font-size: 12px; color: var(--gray); line-height: 1.5; }
+
+/* Example card */
+.demo-example {
+  background: rgba(13,17,23,0.8);
+  border: 1px solid rgba(16,185,129,0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+.demo-example-header {
+  background: rgba(16,185,129,0.07);
+  border-bottom: 1px solid rgba(16,185,129,0.15);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #10b981;
+}
+
+.demo-example-body { padding: 20px; }
+
+.demo-finding {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.demo-finding:last-child { border-bottom: none; padding-bottom: 0; }
+
+.demo-finding-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.demo-finding-name { font-size: 13px; font-weight: 600; color: var(--white); }
+
+.badge-risk {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 100px;
+}
+
+.badge-critical { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+.badge-high { background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+.badge-good { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.3); }
+
+.demo-finding-desc { font-size: 12px; color: var(--gray); line-height: 1.5; }
+.demo-finding-fix { margin-top: 6px; font-size: 11px; color: #60a5fa; font-weight: 500; font-family: var(--mono); }
+
+/* Privacy bar */
+.demo-privacy {
+  background: rgba(16,185,129,0.05);
+  border: 1px solid rgba(16,185,129,0.15);
+  border-radius: 12px;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.demo-privacy-icon { font-size: 24px; flex-shrink: 0; }
+.demo-privacy-strong { display: block; font-size: 13px; font-weight: 600; color: #10b981; margin-bottom: 3px; }
+.demo-privacy-span { font-size: 12px; color: var(--gray); line-height: 1.5; }
+
+.demo-footer {
+  text-align: center;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  font-family: var(--mono);
+}
+
+.demo-footer-name { font-size: 16px; color: var(--white); margin-bottom: 4px; font-weight: 700; }
+.demo-footer-sub { font-size: 11px; color: var(--gray); line-height: 1.7; }
+.demo-footer-sub a { color: var(--cyan); text-decoration: none; }
+
+/* ── ANIMATIONS ── */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  nav { padding: 16px 20px; }
+  .nav-links { gap: 20px; }
+  .nav-links a { font-size: 10px; }
+
+  #hero { padding: 100px 20px 60px; }
+  #about, #project, #skills, #contact { padding: 70px 20px; }
+  #certs, #lab { padding: 70px 20px; }
+
+  .about-grid, .skills-grid { grid-template-columns: 1fr; gap: 40px; }
+  .certs-grid, .lab-grid { grid-template-columns: 1fr; }
+  .featured-features { grid-template-columns: 1fr 1fr; }
+
+  .contact-cards { flex-direction: column; align-items: center; }
+  footer { flex-direction: column; gap: 12px; text-align: center; }
+  .demo-body { padding: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">A.<span>Azim</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#certs">Certs</a></li>
+    <li><a href="#project">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner fade-up">
+    <div class="hero-status">Available for Opportunities</div>
+    <h1>Asama<br><span class="accent">Azim</span></h1>
+    <div class="hero-subtitle">
+      Building <span>Recon AI</span> — AI-Powered Network Security<br>
+      CompTIA Network+ &nbsp;·&nbsp; Security+ In Progress &nbsp;·&nbsp; TCP/IP &nbsp;·&nbsp; IT Support
+    </div>
+    <div class="hero-buttons">
+      <a href="#project" class="btn-primary">View Projects ↓</a>
+      <a href="https://github.com/PRXSM" target="_blank" class="btn-ghost">⌥ GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="fade-up">
+      <div class="section-tag">// About</div>
+      <h2 class="section-title">Who I <span class="accent">Am</span></h2>
+      <p class="about-bio">
+        IT and cybersecurity professional with <strong>hands-on experience</strong> across networking, security, and software development. Network+ certified, Security+ in progress.<br><br>
+        Self-taught <strong>Python and Flask developer</strong> who built <span class="cyan">Recon AI</span> — a working AI-powered network security platform — from scratch across 13 phases. Currently building a cybersecurity home lab and relocating to <strong>Northern Virginia</strong> to pursue SOC and IT roles.
+      </p>
+      <div class="about-chips">
+        <div class="chip"><div class="dot"></div>Network+ Certified</div>
+        <div class="chip"><div class="dot"></div>Python Developer</div>
+        <div class="chip"><div class="dot"></div>Security+ In Progress</div>
+        <div class="chip"><div class="dot"></div>Home Lab Builder</div>
+      </div>
+    </div>
+    <div class="about-stats fade-up">
+      <div class="stat-item">
+        <div class="stat-num">13</div>
+        <div class="stat-label">Recon AI phases built and shipped</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Home lab projects documented on GitHub</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">30+</div>
+        <div class="stat-label">Threat patterns in log analysis engine</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTS -->
+<section id="certs">
+  <div class="inner">
+    <div class="section-tag fade-up">// Credentials</div>
+    <h2 class="section-title fade-up">Certifications &amp; <span class="accent">Education</span></h2>
+    <div class="certs-grid">
+      <div class="cert-card fade-up">
+        <div class="cert-top">
+          <div class="cert-icon">🛡</div>
+          <div class="cert-status verified">Verified</div>
+        </div>
+        <div class="cert-name">CompTIA Network+</div>
+        <div class="cert-meta">Certified — 2026</div>
+      </div>
+      <div class="cert-card fade-up">
+        <div class="cert-top">
+          <div class="cert-icon">🔒</div>
+          <div class="cert-status pending">In Progress</div>
+        </div>
+        <div class="cert-name">CompTIA Security+</div>
+        <div class="cert-meta">SY0-701 — 2026</div>
+        <div class="cert-progress"><div class="cert-progress-fill"></div></div>
+      </div>
+      <div class="cert-card fade-up">
+        <div class="cert-top">
+          <div class="cert-icon">🎓</div>
+          <div class="cert-status verified">Verified</div>
+        </div>
+        <div class="cert-name">Google IT Support</div>
+        <div class="cert-meta">Professional Certificate — 2020</div>
+      </div>
+      <div class="cert-card fade-up">
+        <div class="cert-top">
+          <div class="cert-icon">📐</div>
+          <div class="cert-status verified">Verified</div>
+        </div>
+        <div class="cert-name">A.A.S. Computer Information Systems</div>
+        <div class="cert-meta">Blue Ridge Community College — 2022</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PROJECT -->
+<section id="project">
+  <div class="section-tag fade-up">// Featured Project</div>
+  <div class="featured-card fade-up">
+    <div class="featured-top">
+      <div>
+        <div class="featured-phase">Phases 1–13 Complete &nbsp;·&nbsp; Phase 14 In Progress</div>
+        <div class="featured-name">Recon AI</div>
+        <div class="featured-sub">AI-Powered Network Security Platform</div>
+      </div>
+      <a href="https://github.com/PRXSM/recon-ai" target="_blank" class="btn-ghost">⌥ View on GitHub</a>
+    </div>
+    <p class="featured-desc">
+      Local-first network security platform built in <strong>Python and Flask</strong> for non-technical users — small businesses, schools, and clinics who fall between expensive enterprise tools and complex DIY solutions. Features <strong>9 core security tools</strong>: TCP port scanning (simple + deep 65,535 ports), network mapping with MAC vendor lookup, log analysis with 30+ threat patterns, credential risk assessment, Shadow AI discovery, NIST/OWASP compliance mapping, Zero Trust verification, and prompt injection hardening. AI analysis in <strong>three modes</strong> — Standard (Claude API), Private (local Ollama, zero data leaves), and Offline (always free). Multi-agent Adversary Agent challenges findings before you see them. 0–100 Network Health Score. Survives a full red/blue team security audit in May 2026.
+    </p>
+    <div class="featured-features">
+      <div class="feat-item">9 Core Security Tools</div>
+      <div class="feat-item">Network Health Score (0–100)</div>
+      <div class="feat-item">3 AI Modes (Standard / Private / Offline)</div>
+      <div class="feat-item">NIST/OWASP Compliance Mapping</div>
+      <div class="feat-item">Multi-Agent Adversary Analysis</div>
+      <div class="feat-item">Zero Trust Verification</div>
+      <div class="feat-item">Prompt Injection Hardening</div>
+      <div class="feat-item">Shadow AI Discovery</div>
+      <div class="feat-item">Red/Blue Team Audited — May 2026</div>
+    </div>
+    <div class="featured-actions">
+      <button class="btn-primary" onclick="openModal()">▶ Live Demo</button>
+      <a href="https://github.com/PRXSM/recon-ai" target="_blank" class="btn-ghost">⌥ GitHub</a>
+    </div>
+    <div class="featured-tags">
+      <div class="tag">Python</div>
+      <div class="tag">Flask</div>
+      <div class="tag">Claude API</div>
+      <div class="tag">SQLite</div>
+      <div class="tag">TCP/IP</div>
+      <div class="tag">Nmap</div>
+      <div class="tag">Wireshark</div>
+      <div class="tag">Cybersecurity</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOME LAB -->
+<section id="lab">
+  <div class="inner">
+    <div class="section-tag fade-up">// Home Lab</div>
+    <h2 class="section-title fade-up">Hands-On <span class="accent">Lab Projects</span></h2>
+    <div class="lab-grid">
+      <a href="https://github.com/PRXSM/cybersecurity-home-lab" target="_blank" class="lab-card fade-up">
+        <div class="lab-card-top">
+          <div class="lab-active">Lab Active</div>
+          <div class="lab-link">↗</div>
+        </div>
+        <div class="lab-name">Network Reconnaissance with Nmap</div>
+        <div class="lab-desc">Built full VirtualBox lab with Kali Linux and Windows Server 2022. Nmap scans: version detection, OS fingerprinting, full port. RDP'd from Kali via xfreerdp. Captured traffic with tcpdump.</div>
+        <div class="lab-tags">
+          <span class="lab-tag">Nmap</span>
+          <span class="lab-tag">Kali Linux</span>
+          <span class="lab-tag">tcpdump</span>
+          <span class="lab-tag">RDP</span>
+        </div>
+      </a>
+      <a href="https://github.com/PRXSM/cybersecurity-home-lab" target="_blank" class="lab-card fade-up">
+        <div class="lab-card-top">
+          <div class="lab-active">Lab Active</div>
+          <div class="lab-link">↗</div>
+        </div>
+        <div class="lab-name">Snort IDS</div>
+        <div class="lab-desc">Installed Snort 3 on Kali. Wrote custom rules for ICMP ping and TCP SYN port scan detection. Verified alerts firing against real Nmap and ping traffic.</div>
+        <div class="lab-tags">
+          <span class="lab-tag">Snort</span>
+          <span class="lab-tag">IDS</span>
+          <span class="lab-tag">TCP/IP</span>
+        </div>
+      </a>
+      <a href="https://github.com/PRXSM/cybersecurity-home-lab" target="_blank" class="lab-card fade-up">
+        <div class="lab-card-top">
+          <div class="lab-active">Lab Active</div>
+          <div class="lab-link">↗</div>
+        </div>
+        <div class="lab-name">Active Directory &amp; Domain Controller</div>
+        <div class="lab-desc">Promoted Windows Server 2022 to Domain Controller. Created domain lab.local, OUs, users, and enforced GPO password policy across the domain.</div>
+        <div class="lab-tags">
+          <span class="lab-tag">Active Directory</span>
+          <span class="lab-tag">Windows Server</span>
+          <span class="lab-tag">GPO</span>
+        </div>
+      </a>
+      <a href="https://github.com/PRXSM/cybersecurity-home-lab" target="_blank" class="lab-card fade-up">
+        <div class="lab-card-top">
+          <div class="lab-active">Lab Active</div>
+          <div class="lab-link">↗</div>
+        </div>
+        <div class="lab-name">Wireshark Traffic Analysis</div>
+        <div class="lab-desc">Captured live traffic on eth1. Analyzed ICMP, TCP SYN, and RDP packets. Applied display filters and inspected all OSI layers in packet detail pane.</div>
+        <div class="lab-tags">
+          <span class="lab-tag">Wireshark</span>
+          <span class="lab-tag">Packets</span>
+          <span class="lab-tag">OSI</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-tag fade-up">// Capabilities</div>
+  <h2 class="section-title fade-up">Technical <span class="accent">Skills</span></h2>
+  <div class="skills-grid fade-up">
+    <div>
+      <div class="skills-group-label">Security &amp; Networking</div>
+      <div class="skills-chips">
+        <div class="skill-chip">TCP/IP</div>
+        <div class="skill-chip">DNS</div>
+        <div class="skill-chip">DHCP</div>
+        <div class="skill-chip">Port Scanning</div>
+        <div class="skill-chip">Vulnerability Assessment</div>
+        <div class="skill-chip">Log Analysis</div>
+        <div class="skill-chip">Threat Detection</div>
+        <div class="skill-chip">IDS/Snort</div>
+        <div class="skill-chip">Wireshark</div>
+        <div class="skill-chip">Nmap</div>
+        <div class="skill-chip">Active Directory</div>
+        <div class="skill-chip">Kerberos</div>
+        <div class="skill-chip">RDP</div>
+        <div class="skill-chip">SSH</div>
+      </div>
+    </div>
+    <div>
+      <div class="skills-group-label">Development</div>
+      <div class="skills-chips">
+        <div class="skill-chip">Python</div>
+        <div class="skill-chip">Flask</div>
+        <div class="skill-chip">SQLite</div>
+        <div class="skill-chip">Git/GitHub</div>
+        <div class="skill-chip">Linux</div>
+        <div class="skill-chip">REST APIs</div>
+        <div class="skill-chip">Claude API</div>
+        <div class="skill-chip">Socket Programming</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="inner">
+    <div class="section-tag fade-up" style="justify-content:center">// Contact</div>
+    <h2 class="section-title fade-up" style="text-align:center">Let's <span class="accent">Connect</span></h2>
+    <p class="contact-desc fade-up">Open to SOC Analyst, IT Support, and cybersecurity roles in Northern Virginia.</p>
+    <div class="contact-cards fade-up">
+      <a href="mailto:azim.asama@outlook.com" class="contact-card">
+        <div class="contact-icon">✉</div>
+        <div class="contact-label">azim.asama@outlook.com</div>
+      </a>
+      <a href="https://linkedin.com/in/asama-azim-38a0b391" target="_blank" class="contact-card">
+        <div class="contact-icon">in</div>
+        <div class="contact-label">asama-azim</div>
+      </a>
+      <a href="https://github.com/PRXSM" target="_blank" class="contact-card">
+        <div class="contact-icon">⌥</div>
+        <div class="contact-label">PRXSM</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">Built by <span>Asama Azim</span> — 2026</div>
+  <div class="footer-right">PRXSM · Northern Virginia</div>
+</footer>
+
+<!-- RECON AI DEMO MODAL -->
+<style>
+/* ── DEMO PURPLE THEME ── */
+.demo-wrap {
+  background: #0e0a1a;
+  font-family: 'DM Sans', sans-serif;
+  color: #f0eeff;
+  min-height: 100%;
+}
+
+/* Scan screen */
+.scan-screen {
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+  text-align: center;
+}
+
+.scan-logo {
+  font-family: 'Space Mono', monospace;
+  font-size: 36px;
+  font-weight: 700;
+  color: #f0eeff;
+  margin-bottom: 8px;
+}
+.scan-logo span { color: #a78bfa; }
+
+.scan-tagline {
+  font-size: 13px;
+  color: #9ca3af;
+  margin-bottom: 48px;
+}
+
+.scan-ring {
+  width: 80px;
+  height: 80px;
+  border: 3px solid rgba(167,139,250,0.15);
+  border-top-color: #a78bfa;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 32px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.scan-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 340px;
+}
+
+.scan-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: #6b7280;
+  letter-spacing: 0.05em;
+  transition: color 0.3s;
+}
+
+.scan-step.active { color: #a78bfa; }
+.scan-step.done { color: #34d399; }
+
+.scan-step-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #374151;
+  flex-shrink: 0;
+  transition: background 0.3s;
+}
+
+.scan-step.active .scan-step-dot {
+  background: #a78bfa;
+  box-shadow: 0 0 8px rgba(167,139,250,0.6);
+}
+
+.scan-step.done .scan-step-dot { background: #34d399; }
+
+.scan-progress-bar {
+  width: 100%;
+  max-width: 340px;
+  height: 3px;
+  background: rgba(167,139,250,0.1);
+  border-radius: 2px;
+  margin-top: 24px;
+  overflow: hidden;
+}
+
+.scan-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #7c3aed, #a78bfa);
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.4s ease;
+}
+
+/* Results screen */
+.results-screen { display: none; }
+.results-screen.visible { display: block; }
+
+/* Results header */
+.demo-results-header {
+  background: #130d24;
+  border-bottom: 1px solid rgba(167,139,250,0.15);
+  padding: 20px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.demo-results-logo {
+  font-family: 'Space Mono', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: #f0eeff;
+}
+
+.demo-results-logo span { color: #a78bfa; }
+
+.demo-mode-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(167,139,250,0.08);
+  border: 1px solid rgba(167,139,250,0.2);
+  border-radius: 100px;
+  padding: 5px 14px;
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #a78bfa;
+}
+
+.demo-mode-badge::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #a78bfa;
+  box-shadow: 0 0 6px #a78bfa;
+}
+
+/* Results body */
+.demo-results-body { padding: 32px; }
+
+.demo-meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: #6b7280;
+  letter-spacing: 0.08em;
+  margin-bottom: 24px;
+}
+
+/* Score */
+.demo-score-card {
+  background: #130d24;
+  border: 1px solid rgba(167,139,250,0.2);
+  border-radius: 16px;
+  padding: 32px;
+  text-align: center;
+  margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.demo-score-card::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(167,139,250,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.demo-score-label-p {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin-bottom: 12px;
+}
+
+.demo-score-number {
+  font-family: 'Space Mono', monospace;
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #a78bfa, #34d399);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.demo-score-status-p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fbbf24;
+  margin-bottom: 10px;
+}
+
+.demo-score-status-p::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fbbf24;
+  box-shadow: 0 0 8px #fbbf24;
+  animation: pulse 2s infinite;
+}
+
+.demo-score-desc-p {
+  font-size: 12px;
+  color: #9ca3af;
+  line-height: 1.6;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Priority action card */
+.demo-priority {
+  background: rgba(167,139,250,0.06);
+  border: 1px solid rgba(167,139,250,0.25);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.demo-priority-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+
+.demo-priority-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #a78bfa;
+  margin-bottom: 6px;
+}
+
+.demo-priority-text {
+  font-size: 13px;
+  color: #f0eeff;
+  line-height: 1.6;
+}
+
+/* Section headers */
+.demo-section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #f0eeff;
+  margin-bottom: 14px;
+  margin-top: 28px;
+}
+
+.demo-section-header .demo-sh-icon { font-size: 18px; }
+
+/* Ports */
+.demo-ports-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 4px; }
+
+.demo-port-row {
+  background: #130d24;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.demo-port-name {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  color: #f0eeff;
+  font-weight: 700;
+}
+
+.demo-port-desc { font-size: 12px; color: #9ca3af; margin-top: 2px; }
+
+.demo-port-badge {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+
+.port-normal { background: rgba(52,211,153,0.1); color: #34d399; border: 1px solid rgba(52,211,153,0.25); }
+.port-medium { background: rgba(251,191,36,0.1); color: #fbbf24; border: 1px solid rgba(251,191,36,0.25); }
+
+/* Devices */
+.demo-device-card {
+  background: #130d24;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 10px;
+  padding: 18px;
+  margin-bottom: 4px;
+}
+
+.demo-device-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.demo-device-name { font-size: 14px; font-weight: 600; color: #f0eeff; }
+.demo-device-meta { font-family: 'Space Mono', monospace; font-size: 11px; color: #9ca3af; }
+.demo-device-vendor {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  background: rgba(167,139,250,0.08);
+  border: 1px solid rgba(167,139,250,0.15);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 11px;
+  color: #a78bfa;
+}
+
+/* Vulns */
+.demo-vuln-card {
+  background: #130d24;
+  border-left: 3px solid #fbbf24;
+  border-radius: 0 10px 10px 0;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  border-right: 1px solid rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  padding: 16px 18px;
+  margin-bottom: 8px;
+}
+
+.demo-vuln-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.demo-vuln-name { font-size: 13px; font-weight: 700; color: #f0eeff; }
+.demo-vuln-desc { font-size: 12px; color: #9ca3af; line-height: 1.5; }
+.demo-vuln-fix { margin-top: 6px; font-size: 11px; color: #a78bfa; font-family: 'Space Mono', monospace; }
+
+.badge-medium-p { background: rgba(251,191,36,0.12); color: #fbbf24; border: 1px solid rgba(251,191,36,0.25); font-family: 'Space Mono', monospace; font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 100px; }
+
+/* Inspector / compliance rows */
+.demo-check-row {
+  background: #130d24;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.demo-check-label { font-size: 13px; color: #f0eeff; font-weight: 500; }
+.demo-check-sub { font-size: 11px; color: #9ca3af; margin-top: 2px; }
+.demo-check-pass { color: #34d399; font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; display: flex; align-items: center; gap: 5px; }
+.demo-check-pass::before { content: '✓'; }
+.demo-check-note { color: #fbbf24; font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; }
+
+/* NIST row */
+.demo-nist-row {
+  background: #130d24;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 8px;
+}
+
+.demo-nist-label { font-size: 12px; color: #9ca3af; font-family: 'Space Mono', monospace; letter-spacing: 0.05em; margin-bottom: 4px; }
+.demo-nist-val { font-size: 13px; color: #f0eeff; }
+
+/* AI Says */
+.demo-ai-card {
+  background: #130d24;
+  border: 1px solid rgba(167,139,250,0.2);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+
+.demo-ai-header {
+  background: rgba(167,139,250,0.07);
+  border-bottom: 1px solid rgba(167,139,250,0.12);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #a78bfa;
+}
+
+.demo-ai-body { padding: 24px; }
+
+.demo-ai-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #f0eeff;
+  margin-bottom: 20px;
+}
+
+.demo-finding-block { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.demo-finding-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+.demo-finding-title {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: #a78bfa;
+  margin-bottom: 14px;
+  letter-spacing: 0.03em;
+}
+
+.demo-finding-row { margin-bottom: 10px; font-size: 13px; line-height: 1.6; color: #d1d5db; }
+.demo-finding-row strong { color: #f0eeff; font-weight: 700; }
+
+.demo-good-news {
+  background: rgba(52,211,153,0.05);
+  border: 1px solid rgba(52,211,153,0.15);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-top: 20px;
+}
+
+.demo-good-title { font-size: 13px; font-weight: 700; color: #34d399; margin-bottom: 10px; }
+.demo-good-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #d1d5db; margin-bottom: 6px; }
+.demo-good-item::before { content: '✓'; color: #34d399; font-weight: 700; }
+
+/* Privacy bar */
+.demo-privacy-bar {
+  background: rgba(52,211,153,0.05);
+  border: 1px solid rgba(52,211,153,0.15);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.demo-privacy-strong-p { font-size: 13px; font-weight: 700; color: #34d399; display: block; margin-bottom: 3px; }
+.demo-privacy-span-p { font-size: 12px; color: #9ca3af; line-height: 1.5; }
+
+/* Action buttons */
+.demo-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.demo-btn-primary {
+  background: #7c3aed;
+  color: #fff;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.demo-btn-primary:hover { background: #6d28d9; transform: translateY(-1px); }
+
+.demo-btn-ghost-p {
+  background: transparent;
+  color: #a78bfa;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border-radius: 6px;
+  border: 1px solid rgba(167,139,250,0.3);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.demo-btn-ghost-p:hover { border-color: #a78bfa; background: rgba(167,139,250,0.06); }
+
+/* Demo footer */
+.demo-footer-p {
+  text-align: center;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  margin-top: 8px;
+}
+
+.demo-footer-name-p { font-family: 'Space Mono', monospace; font-size: 14px; color: #f0eeff; margin-bottom: 4px; font-weight: 700; }
+.demo-footer-sub-p { font-size: 11px; color: #6b7280; line-height: 1.7; }
+.demo-footer-sub-p a { color: #a78bfa; text-decoration: none; }
+</style>
+
+<div class="modal-overlay" id="demoModal" onclick="handleModalClick(event)">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-title">// Recon AI — Live Demo</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="demo-wrap">
+
+      <!-- SCAN SCREEN -->
+      <div class="scan-screen" id="scanScreen">
+        <div class="scan-logo">Recon <span>AI</span></div>
+        <p class="scan-tagline">Your network, explained in plain English.</p>
+        <div class="scan-ring"></div>
+        <div class="scan-steps">
+          <div class="scan-step" id="step1"><div class="scan-step-dot"></div>Initializing scan engine...</div>
+          <div class="scan-step" id="step2"><div class="scan-step-dot"></div>Discovering devices on subnet...</div>
+          <div class="scan-step" id="step3"><div class="scan-step-dot"></div>Scanning open ports (1–1024)...</div>
+          <div class="scan-step" id="step4"><div class="scan-step-dot"></div>Running vulnerability check...</div>
+          <div class="scan-step" id="step5"><div class="scan-step-dot"></div>Inspecting processes &amp; startup items...</div>
+          <div class="scan-step" id="step6"><div class="scan-step-dot"></div>Mapping NIST/OWASP compliance...</div>
+          <div class="scan-step" id="step7"><div class="scan-step-dot"></div>Generating AI analysis...</div>
+        </div>
+        <div class="scan-progress-bar" style="margin-top:20px">
+          <div class="scan-progress-fill" id="scanProgressFill"></div>
+        </div>
+      </div>
+
+      <!-- RESULTS SCREEN -->
+      <div class="results-screen" id="resultsScreen">
+        <div class="demo-results-header">
+          <div class="demo-results-logo">Recon <span>AI</span></div>
+          <div class="demo-mode-badge">Standard Mode · AI Active</div>
+        </div>
+        <div class="demo-results-body">
+          <div class="demo-meta">⚡ Recon AI — Your Network Report &nbsp;|&nbsp; Mode: Standard Scan &nbsp;|&nbsp; Time: 2026-05-10T22:15:00</div>
+
+          <!-- Score -->
+          <div class="demo-score-card">
+            <div class="demo-score-label-p">Network Health Score</div>
+            <div class="demo-score-number">74</div>
+            <div class="demo-score-status-p">MODERATE — A few things worth reviewing</div>
+            <p class="demo-score-desc-p">Every scan gives your network a score from 0 to 100. You always know exactly where you stand — no guessing, no confusing reports.</p>
+          </div>
+
+          <!-- Priority Action -->
+          <div class="demo-priority">
+            <div class="demo-priority-icon">🎯</div>
+            <div>
+              <div class="demo-priority-label">Priority Action · Verified by Adversary Agent</div>
+              <div class="demo-priority-text">The most important thing to do right now is verify that SSH (port 22) access is restricted to trusted devices only. Consider disabling password authentication and using SSH keys instead.</div>
+            </div>
+          </div>
+
+          <!-- Open Ports -->
+          <div class="demo-section-header"><span class="demo-sh-icon">🔒</span> Open Ports</div>
+          <p style="font-size:12px;color:#9ca3af;margin-bottom:14px;">These are doors into your network. Each one should be intentional.</p>
+          <div class="demo-ports-list">
+            <div class="demo-port-row">
+              <div>
+                <div class="demo-port-name">Port 80 — HTTP</div>
+                <div class="demo-port-desc">Web server — standard unencrypted web traffic</div>
+              </div>
+              <span class="demo-port-badge port-normal">Normal</span>
+            </div>
+            <div class="demo-port-row">
+              <div>
+                <div class="demo-port-name">Port 443 — HTTPS</div>
+                <div class="demo-port-desc">Secure web server — encrypted connections</div>
+              </div>
+              <span class="demo-port-badge port-normal">Normal</span>
+            </div>
+            <div class="demo-port-row">
+              <div>
+                <div class="demo-port-name">Port 22 — SSH</div>
+                <div class="demo-port-desc">Remote access — should be restricted to known IPs</div>
+              </div>
+              <span class="demo-port-badge port-medium">Review</span>
+            </div>
+          </div>
+
+          <!-- Devices -->
+          <div class="demo-section-header"><span class="demo-sh-icon">🖥</span> Devices Found on Your Network</div>
+          <p style="font-size:12px;color:#9ca3af;margin-bottom:14px;">I found 1 device on your network.</p>
+          <div class="demo-device-card">
+            <div class="demo-device-top">
+              <div class="demo-device-name">Device at [REDACTED].1</div>
+              <span class="demo-port-badge port-normal">Recognized</span>
+            </div>
+            <div class="demo-device-meta">MAC: A4:83:E7:xx:xx:xx &nbsp;·&nbsp; Seen before ✓</div>
+            <div class="demo-device-vendor">🍎 Apple Inc. — MacBook / iPhone / iPad</div>
+          </div>
+
+          <!-- Vulnerabilities -->
+          <div class="demo-section-header"><span class="demo-sh-icon">⚠️</span> Vulnerabilities Found</div>
+          <p style="font-size:12px;color:#9ca3af;margin-bottom:14px;">Known risks associated with your open ports and system context.</p>
+          <div class="demo-vuln-card">
+            <div class="demo-vuln-top">
+              <div class="demo-vuln-name">Port 22 — SSH Brute Force Risk</div>
+              <span class="badge-medium-p">Medium</span>
+            </div>
+            <div class="demo-vuln-desc">SSH is open to the network. Automated bots scan the internet constantly for open SSH ports and attempt common passwords. If password authentication is enabled, this is a real risk.</div>
+            <div class="demo-vuln-fix">→ Disable password auth. Use SSH key pairs only. Restrict to known IPs if possible.</div>
+          </div>
+
+          <!-- System Inspector -->
+          <div class="demo-section-header"><span class="demo-sh-icon">🔍</span> System Inspector</div>
+          <div class="demo-check-row">
+            <div>
+              <div class="demo-check-label">Running Processes</div>
+              <div class="demo-check-sub">460 scanned</div>
+            </div>
+            <div class="demo-check-pass">Clean</div>
+          </div>
+          <div class="demo-check-row">
+            <div>
+              <div class="demo-check-label">Startup Items</div>
+              <div class="demo-check-sub">907 scanned — all from recognized publishers</div>
+            </div>
+            <div class="demo-check-pass">Clean</div>
+          </div>
+          <div class="demo-check-row">
+            <div>
+              <div class="demo-check-label">Recent System Changes</div>
+              <div class="demo-check-sub">Last 7 days — no unexpected modifications</div>
+            </div>
+            <div class="demo-check-pass">Clean</div>
+          </div>
+
+          <!-- Zero Trust -->
+          <div class="demo-section-header"><span class="demo-sh-icon">🛡</span> Zero Trust Verification</div>
+          <div class="demo-check-row">
+            <div>
+              <div class="demo-check-label">No Zero Trust issues found</div>
+              <div class="demo-check-sub">Every device I've seen before is still here. No high-risk services openly accessible.</div>
+            </div>
+            <div class="demo-check-pass">Passed</div>
+          </div>
+
+          <!-- Credential Check -->
+          <div class="demo-section-header"><span class="demo-sh-icon">🔐</span> Credential Risk Assessment</div>
+          <div class="demo-check-row">
+            <div>
+              <div class="demo-check-label">No credential risks found</div>
+              <div class="demo-check-sub">I checked 1 device — no insecure protocols, default credentials, or exposed admin services found.</div>
+            </div>
+            <div class="demo-check-pass">Clean</div>
+          </div>
+
+          <!-- NIST/OWASP -->
+          <div class="demo-section-header"><span class="demo-sh-icon">📋</span> Compliance Mapping</div>
+          <div class="demo-nist-row">
+            <div class="demo-nist-label">NIST FRAMEWORK</div>
+            <div class="demo-nist-val" style="margin-bottom:10px;">Port 22 (SSH) falls under <strong style="color:#fbbf24;">Protect</strong> — this means it needs your attention before it becomes an active risk.</div>
+            <div class="demo-nist-label" style="margin-top:12px;">OWASP TOP 10</div>
+            <div class="demo-nist-val">No OWASP Top 10 findings matched. ✓</div>
+          </div>
+
+          <!-- Shadow AI -->
+          <div class="demo-section-header"><span class="demo-sh-icon">🤖</span> Shadow AI Discovery</div>
+          <div class="demo-check-row">
+            <div>
+              <div class="demo-check-label">No unauthorized AI tools detected</div>
+              <div class="demo-check-sub">Scanned for Ollama, LM Studio, Gradio, and known AI API traffic patterns.</div>
+            </div>
+            <div class="demo-check-pass">Clean</div>
+          </div>
+
+          <!-- Recon AI Says -->
+          <div class="demo-section-header" style="margin-top:32px"><span class="demo-sh-icon">🤖</span> Recon AI Says</div>
+          <div class="demo-ai-card">
+            <div class="demo-ai-header">🧠 Your Scan Results Explained — AI Analysis</div>
+            <div class="demo-ai-body">
+              <div class="demo-ai-title">Your Scan Results Explained</div>
+
+              <div class="demo-finding-block">
+                <div class="demo-finding-title">Port 22 — SSH (Remote Access)</div>
+                <div class="demo-finding-row"><strong>EXPLAIN:</strong> SSH is a remote access protocol — it lets you log into your machine securely from anywhere. Think of it as a secret door into your computer that only you're supposed to know about.</div>
+                <div class="demo-finding-row"><strong>RISK:</strong> This is a medium risk. Automated bots scan millions of IP addresses every day looking for open SSH ports. If you're using a simple password, they'll try thousands of combinations. It's not an emergency — but it's worth fixing properly.</div>
+                <div class="demo-finding-row"><strong>FIX:</strong> Switch to SSH key authentication and disable password login. On macOS/Linux, edit <code style="background:rgba(167,139,250,0.1);padding:2px 6px;border-radius:4px;font-size:11px;">/etc/ssh/sshd_config</code> and set <code style="background:rgba(167,139,250,0.1);padding:2px 6px;border-radius:4px;font-size:11px;">PasswordAuthentication no</code>. Restart SSH after.</div>
+                <div class="demo-finding-row"><strong>VERIFY:</strong> Try logging in with a wrong password — it should be refused. Then confirm your key-based login still works.</div>
+              </div>
+
+              <div class="demo-finding-block">
+                <div class="demo-finding-title">Port 80 &amp; 443 — Web Servers</div>
+                <div class="demo-finding-row"><strong>EXPLAIN:</strong> These are standard web ports. Port 80 is regular HTTP, port 443 is encrypted HTTPS. If you're running a web server intentionally, this is expected.</div>
+                <div class="demo-finding-row"><strong>RISK:</strong> Low. These are normal if you're running a local web server or development environment. No action needed unless you don't recognize what's running on them.</div>
+                <div class="demo-finding-row"><strong>FIX:</strong> If you didn't intentionally set up a web server, run <code style="background:rgba(167,139,250,0.1);padding:2px 6px;border-radius:4px;font-size:11px;">lsof -i :80</code> and <code style="background:rgba(167,139,250,0.1);padding:2px 6px;border-radius:4px;font-size:11px;">lsof -i :443</code> in Terminal to see what program is using them.</div>
+                <div class="demo-finding-row"><strong>VERIFY:</strong> If expected — no action needed. If unexpected — stop the unknown service.</div>
+              </div>
+
+              <div class="demo-good-news">
+                <div class="demo-good-title">The Good News</div>
+                <div class="demo-good-item">No suspicious processes running</div>
+                <div class="demo-good-item">No unknown devices on your network</div>
+                <div class="demo-good-item">Zero Trust check passed</div>
+                <div class="demo-good-item">No credential risks found</div>
+                <div class="demo-good-item">No Shadow AI tools detected</div>
+                <div style="margin-top:12px;font-size:12px;color:#9ca3af;line-height:1.6;">You're in solid shape overall. The SSH finding is worth fixing properly — it'll take 15 minutes and significantly tighten your security posture.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Privacy -->
+          <div class="demo-privacy-bar">
+            <div style="font-size:24px;flex-shrink:0">🔒</div>
+            <div>
+              <strong class="demo-privacy-strong-p">Your data never left your network</strong>
+              <span class="demo-privacy-span-p">Recon AI ran entirely on your machine. Your IP addresses were redacted before any data reached the AI. No accounts. No cloud storage. No data collection.</span>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="demo-actions">
+            <button class="demo-btn-primary">📄 Download Full Report</button>
+            <button class="demo-btn-ghost-p" onclick="restartDemo()">← Scan Again</button>
+          </div>
+
+          <!-- Footer -->
+          <div class="demo-footer-p" style="margin-top:28px">
+            <div class="demo-footer-name-p">Built by Asama Azim</div>
+            <div class="demo-footer-sub-p">
+              CompTIA Network+ Certified &nbsp;·&nbsp; Security+ in progress<br>
+              <a href="https://github.com/PRXSM/recon-ai" target="_blank">github.com/PRXSM/recon-ai</a>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- end results-screen -->
+    </div><!-- end demo-wrap -->
+  </div>
+</div>
+
+<script>
+// Modal + Scan Animation
+function openModal() {
+  document.getElementById('demoModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  // Reset and run scan animation
+  resetScan();
+  runScanAnimation();
+}
+
+function closeModal() {
+  document.getElementById('demoModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleModalClick(e) {
+  if (e.target === e.currentTarget || e.target.classList.contains('modal-backdrop')) {
+    closeModal();
+  }
+}
+
+function resetScan() {
+  document.getElementById('scanScreen').style.display = 'flex';
+  document.getElementById('resultsScreen').classList.remove('visible');
+  document.getElementById('scanProgressFill').style.width = '0%';
+  for (let i = 1; i <= 7; i++) {
+    const s = document.getElementById('step' + i);
+    s.classList.remove('active', 'done');
+  }
+}
+
+function restartDemo() {
+  document.getElementById('resultsScreen').classList.remove('visible');
+  document.getElementById('scanScreen').style.display = 'flex';
+  resetScan();
+  runScanAnimation();
+}
+
+function runScanAnimation() {
+  const steps = [1,2,3,4,5,6,7];
+  const totalMs = 3200;
+  const stepDelay = totalMs / steps.length;
+  const fill = document.getElementById('scanProgressFill');
+
+  steps.forEach((n, i) => {
+    setTimeout(() => {
+      // Done previous
+      if (i > 0) {
+        document.getElementById('step' + steps[i-1]).classList.remove('active');
+        document.getElementById('step' + steps[i-1]).classList.add('done');
+      }
+      document.getElementById('step' + n).classList.add('active');
+      fill.style.width = ((i + 1) / steps.length * 100) + '%';
+    }, i * stepDelay);
+  });
+
+  // Show results
+  setTimeout(() => {
+    document.getElementById('step7').classList.remove('active');
+    document.getElementById('step7').classList.add('done');
+    fill.style.width = '100%';
+    setTimeout(() => {
+      document.getElementById('scanScreen').style.display = 'none';
+      const r = document.getElementById('resultsScreen');
+      r.classList.add('visible');
+      r.scrollTop = 0;
+    }, 400);
+  }, totalMs + 200);
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// PWA manifest inline
+const manifest = {
+  name: 'Asama Azim — Cybersecurity Portfolio',
+  short_name: 'A.Azim',
+  description: 'IT and cybersecurity professional building Recon AI',
+  start_url: '/',
+  display: 'standalone',
+  background_color: '#080b10',
+  theme_color: '#00f5ff',
+  icons: [
+    { src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23080b10"/><text y=".9em" font-size="90" x="5">A</text></svg>', sizes: '192x192', type: 'image/svg+xml' }
+  ]
+};
+
+const blob = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
+const manifestUrl = URL.createObjectURL(blob);
+document.getElementById('manifest-placeholder').href = manifestUrl;
+</script>
+</body>
+</html>
